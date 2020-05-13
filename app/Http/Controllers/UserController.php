@@ -45,7 +45,7 @@ class UserController extends Controller
         $new_user->email = $request->get('email');
         $new_user->password = \Hash::make($request->get('password'));
         if($request->file('avatar')){
-        $file = $request->file('avatar')->store('avatars', 'public');
+        $file = $request->file('avatar')->store('avatars', 'app/public/avatars');
         $new_user->avatar = $file->nullable();
         }
         $new_user->save();
@@ -91,8 +91,8 @@ class UserController extends Controller
         $user->roles = json_encode($request->get('roles'));
         $user->nopeg = $request->get('nopeg');
         $user->phone = $request->get('phone');
-        if($user->avatar && file_exists(storage_path('app/public/avatars' . $user->avatar))){\Storage::delete('public/'.$user->avatar);
-        $file = $request->file('avatar')->store('avatars', 'public');
+        if($user->avatar && file_exists(storage_path('app/public/avatars' . $user->avatar))){\Storage::delete('app/public/avatars'.$user->avatar);
+        $file = $request->file('avatar')->store('avatars', 'app/public/avatars');
         $user->avatar = $file;}
         $user->save();
             return redirect()->route('users.index', [$id])->with('status', 'User succesfully updated');
