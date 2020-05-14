@@ -44,7 +44,7 @@
     <br>
     Current avatar: <br>
 @if($user->avatar)
-<img src="{{asset('storage/app/public/avatars'.$user->avatar)}}" width="120px" />
+<img src="{{asset('storage/'.$user->avatar)}}" width="120px" />
 <br>
 @else
 No avatar
