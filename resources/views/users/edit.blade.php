@@ -13,9 +13,6 @@
     <label for="name">Name</label>
     <input value="{{$user->name}}" class="form-control" placeholder="Full Name" type="text" name="name" id="name"/>
     <br>
-    <label for="username">Username</label>
-    <input value="{{$user->username}}" class="form-control" placeholder="username" type="text"  name="username" id="username"/>
-    <br>
     <label for="nopeg">No Pegawai </label>
     <input value="{{$user->nopeg}}" class="form-control" placeholder="nopeg" type="text"  name="nopeg" id="nopeg"/>
     <br>
@@ -40,7 +37,7 @@
     <br>
     <input value="{{$user->phone}}" type="text" name="phone" class="form-control">
     <br>
-    <br> <label for="avatar">Avatar image</label>
+    <label for="avatar">Avatar image</label>
     <br>
     Current avatar: <br>
 @if($user->avatar)

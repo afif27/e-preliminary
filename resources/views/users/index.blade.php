@@ -11,7 +11,7 @@
         <div class="col-md-6">
         <form action="{{route('users.index')}}">
         <div class="input-group mb-3">
-        <input value="{{Request::get('keyword')}}"name="keyword"class="form-control col-md-10" type="text" placeholder="Filter berdasarkan nomor"/>
+        <input value="{{Request::get('keyword')}}"name="keyword"class="form-control col-md-10" type="text" placeholder="Filter berdasarkan nopeg atau nama"/>
         <div class="input-group-append">
         <input type="submit"value="Filter"class="btn btn-primary">
         </div>
@@ -19,6 +19,12 @@
         </form>
         </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+            <a href="{{route('users.create')}}" class="btn btn-primary">Create user</a>
+        </div>
+    </div>
+    <br>
 <table class="table table-bordered">
 <thead>
 <tr>

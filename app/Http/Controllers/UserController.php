@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -12,9 +13,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $users = \App\User::paginate(10);
+        $filterKeyword = $request->get('keyword');
+        if($filterKeyword){
+        $users = \App\User::where('nopeg', 'LIKE', "%$filterKeyword%")
+        ->orwhere ('name', 'LIKE', "%$filterKeyword%")
+        ->paginate(10);
+}
         return view('users.index', ['users' => $users]);
     }
 
@@ -91,7 +98,11 @@ class UserController extends Controller
         $user->roles = json_encode($request->get('roles'));
         $user->nopeg = $request->get('nopeg');
         $user->phone = $request->get('phone');
-        if($user->avatar && file_exists(storage_path('app/public' . $user->avatar))){\Storage::delete('public/'.$user->avatar);
+        if($request->file('avatar')){
+            if($user->avatar && file_exists(storage_path('app/public' .$user->avatar)))
+        {
+            \Storage::delete('public/'.$user->avatar);
+        }
         $file = $request->file('avatar')->store('avatars', 'public');
         $user->avatar = $file;
     }
