@@ -15,7 +15,7 @@ class CreateTablePrelims extends Migration
     {
         Schema::create('prelims', function (Blueprint $table){
             $table->increments('id');
-            $table->bigInteger('aircraft_id')->unsigned()->nullable();
+            $table->integer('aircraft_id')->unsigned()->nullable();
             $table->foreign('aircraft_id')->references('id')->on('aircrafts');
             $table->string('description');
             $table->string('finding');
