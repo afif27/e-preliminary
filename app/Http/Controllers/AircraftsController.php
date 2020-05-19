@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use App\Aircraft;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AircraftsController extends Controller
 {
@@ -13,7 +17,9 @@ class AircraftsController extends Controller
      */
     public function index()
     {
-        //
+        $aircraft = \App\Aircraft::paginate(10);
+        return view('aircrafts.index', ['aircrafts' => $aircraft,
+       ]);
     }
 
     /**
@@ -36,11 +42,11 @@ class AircraftsController extends Controller
     {
         $new_aircraft = new \App\Aircraft;
         $new_aircraft->registrasi=$request->get('registrasi');
-        $new_aircraft->airlanes=$request->get('airlane');
+        $new_aircraft->airlines=$request->get('airlines');
         $new_aircraft->rts_plan=$request->get('rts_plan');
    
         $new_aircraft->save();
-        return redirect()->route('aircrafts.create')->with('status', 'User
+        return redirect()->route('aircrafts.index')->with('status', 'Aircraft
         successfully created');
     }
 

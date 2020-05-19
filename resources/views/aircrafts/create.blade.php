@@ -14,7 +14,7 @@
 <input type="text" class="form-control" name="registrasi" placeholder="masukan registrasi pesawat"/>
 <br>
 <label>Airlane Name</label>
-<input type="text" class="form-control" name="airlane" placeholder="masukan nama airlanes"/>
+<input type="text" class="form-control" name="airlines" placeholder="masukan nama airlanes"/>
 <br>
 <div class="form-group">
     <label>RTS Plan </label>
