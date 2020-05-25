@@ -94,4 +94,13 @@ class AircraftsController extends Controller
     {
         //
     }
+    public function combo(Request $request)
+    {
+        $airlines = Aircraft::pluck('airlines');
+        $registrasi = Aircraft::pluck('registrasi');
+        
+        
+       return view('prelims.create', compact(['airlines'=>$airlines,
+       'registrasi'=>$registrasi,]));
+    }
 }

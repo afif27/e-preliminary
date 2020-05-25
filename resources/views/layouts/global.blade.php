@@ -71,6 +71,11 @@ margin-bottom: 2rem;
 <span class="oi oi-people"></span> Manage Aircraft
 </a>
 </li>
+<li>
+    <a href="{{route('prelims.index')}}">
+    <span class="oi oi-people"></span> Manage Prelims
+    </a>
+    </li>
 <div class="d-block d-md-none">
 <div class="dropdown-divider"></div>
 <li><a href="#"> Profile</a></li>
@@ -114,5 +119,6 @@ margin-bottom: 2rem;
      });
     });
    </script>
+   @yield('footer-scripts')
 </body>
 </html>
