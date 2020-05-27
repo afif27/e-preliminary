@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Prelim;
+use DB;
 
 class PrelimController extends Controller
 {
@@ -13,7 +15,10 @@ class PrelimController extends Controller
      */
     public function index()
     {
-        return view('prelims.index');
+        $prelim =DB::table('prelims')->join('aircrafts','prelims.aircraft_id','=','aircrafts.id')->get();
+
+    	// return data ke view
+    	return view('prelims.index', compact('prelim'));
     }
 
     /**
@@ -34,7 +39,16 @@ class PrelimController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_prelim = new \App\Prelim;
+        $new_prelim->aircraft_id=$request->get('aircraft');
+        $new_prelim->description=$request->get('description');
+        $new_prelim->finding=$request->get('finding');
+        $new_prelim->seat_position=$request->get('seat_position');
+        $new_prelim->action=$request->get('action');
+   
+        $new_prelim->save();
+        return redirect()->route('prelims.create')->with('status', 'Aircraft
+        successfully created');
     }
 
     /**

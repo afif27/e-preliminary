@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="{{asset('polished/iconic/css/open-iconic-bootstrap.min.css')}}">
 <link rel="stylsheet"  href="{{asset('datepicker/dist/css/bootstrap-datepicker.min.css')}}">
 
+
 <style>
 .grid-highlight {
 padding-top: 1rem;
@@ -120,5 +121,6 @@ margin-bottom: 2rem;
     });
    </script>
    @yield('footer-scripts')
+  
 </body>
 </html>
