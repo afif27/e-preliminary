@@ -39,16 +39,21 @@ class PrelimController extends Controller
      */
     public function store(Request $request)
     {
+        $input =$request->all();
+        for ($i=0; $i < count($input['description']); ++$i) {
+       
         $new_prelim = new \App\Prelim;
-        $new_prelim->aircraft_id=$request->get('aircraft');
-        $new_prelim->description=$request->get('description');
-        $new_prelim->finding=$request->get('finding');
-        $new_prelim->seat_position=$request->get('seat_position');
-        $new_prelim->action=$request->get('action');
+        $new_prelim->aircraft_id=$input['aircraft'][$i];
+        $new_prelim->description=$input['description'][$i];
+        $new_prelim->finding=$input['finding'][$i];
+        $new_prelim->seat_position=$input['seat_position'][$i];
+        $new_prelim->action=$input['action'][$i];
    
         $new_prelim->save();
+    }
         return redirect()->route('prelims.create')->with('status', 'Aircraft
         successfully created');
+        
     }
 
     /**
