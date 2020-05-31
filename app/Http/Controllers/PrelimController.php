@@ -51,8 +51,8 @@ class PrelimController extends Controller
    
         $new_prelim->save();
     }
-        return redirect()->route('prelims.create')->with('status', 'Aircraft
-        successfully created');
+      
+        return response()->json(['status'=>'Got Simple Ajax Request.']);
         
     }
 

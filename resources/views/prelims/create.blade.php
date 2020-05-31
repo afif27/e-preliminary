@@ -110,8 +110,34 @@ $(document).ready(function() {
           $('#btnAdd').attr('disabled', false);
           // Disable tombol "remove"
           $('#btnDel').attr('disabled', true);
+          $('#submit').click(function(){            
+           $.ajax({  
+                url:'{{url('/prelims/create/ajax')}}',  
+                method:"POST",  
+                data:$('#btnAdd').serialize(),
+                type:'json',
+                success:function(data)  
+                {
+                    if(data.error){
+                        printErrorMsg(data.error);
+                    }else{
+                      alert(data.success);
+                    }
+                }  
+           });  
+      });  
+
+
+      function printErrorMsg (msg) {
+         $(".print-error-msg").find("ul").html('');
+         $(".print-error-msg").css('display','block');
+         $(".print-success-msg").css('display','none');
+         $.each( msg, function( key, value ) {
+            $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+         });
+      }
   });
-}
+});
         </script>
         @endsection
 
