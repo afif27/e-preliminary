@@ -31,55 +31,18 @@
 <th><b>Regitrasi</b></th>
 <th><b>Airline</b></th>
 <th><b>RTS Plan</b></th>
-<th><b>Days To RTS</b></th>
 <th><b>Action</b></th>
 </tr>
 </thead>
 <tbody>
 @foreach($aircrafts as $index => $a)
-<script>
-    CountDownTimer('{{$a->rts_plan}}', 'hitung');
-    hitung.forEach(CountDownTimer);
-    function CountDownTimer(dt, id)
-    {
-        var end = new Date('{{$a->rts_plan}}');
-        var _second = 1000;
-        var _minute = _second * 60;
-        var _hour = _minute * 60;
-        var _day = _hour * 24;
-        var timer;
-        function showRemaining() {
-            var now = new Date();
-            var distance = end - now;
-            if (distance < 0) {
 
-                clearInterval(timer);
-                document.getElementById(id).innerHTML = 'Already RTS';
-                return;
-            }
-            var days = Math.floor(distance / _day);
-           
-            var hours = Math.floor((distance % _day) / _hour);
-            var minutes = Math.floor((distance % _hour) / _minute);
-            var seconds = Math.floor((distance % _minute) / _second);
-
-            document.getElementById(id).innerHTML = days  + ' Days ';
-           
-        }
-        timer = setInterval(showRemaining, 1000);
-     
-    }
-</script>
 <tr>
 <td>{{$a->registrasi}}</td>
 <td>{{$a->airlines}}</td>
 <td>{{$a->rts_plan}}</td>
-<td> 
+
     
-    <div id="hitung"> </div>
-    </td>
-    
-</td> 
      <td>
          <a class="btn btn-info text-white btn-sm" href="{{route('aircrafts.edit',[$a->id])}}">Edit</a>
         <form onsubmit="return confirm('Delete this user permanently?')" class="d-inline" action="{{route('aircrafts.destroy', [$a->id])}}" method="POST">
