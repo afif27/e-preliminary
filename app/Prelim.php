@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prelim extends Model
 {
-    public function Aircraft(){
+    public function aircraft(){
         return $this->belongsToMany('App\Aircraft');
         }
 }

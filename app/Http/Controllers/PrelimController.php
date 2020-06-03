@@ -15,10 +15,10 @@ class PrelimController extends Controller
      */
     public function index()
     {
-        $prelim =DB::table('prelims')->join('aircrafts','prelims.aircraft_id','=','aircrafts.id')->get();
+        $prelim =DB::table('aircrafts')->get();
 
     	// return data ke view
-    	return view('prelims.index', compact('prelim'));
+    	return view('prelims.index',['aircrafts'=>$prelim]);
     }
 
     /**
@@ -63,7 +63,11 @@ class PrelimController extends Controller
      */
     public function show($id)
     {
-        //
+        $aircraft = \App\Aircraft::findOrFail($id);;
+        $prelim = Prelim::where('aircraft_id',$id)->get(); 
+       // $prelims = DB::table('prelims')->where('aircraft_id',$aircraft_id);
+        return view('prelims.show', ['prelims' => $prelim,
+        'aircrafts'=>$aircraft]);
     }
 
     /**
