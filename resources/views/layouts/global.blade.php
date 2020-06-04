@@ -32,7 +32,7 @@ margin-bottom: 2rem;
 <script type="text/javascript"> document.documentElement.className =document.documentElement.className.replace('no-js', 'js') +(document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? ' svg' : ' no-svg');</script>
 </head>
 <body>
-<nav class="navbar navbar-expand p-0"> <a class="navbar-brand text-center col-xs-12 col-md-3 col-lg-2 mr-0" href="index.html"> E-Preliminary </a>
+<nav class="navbar navbar-expand p-0"> <a class="navbar-brand text-center col-xs-12 col-md-3 col-lg-2 mr-0" href="/home"> E-Preliminary </a>
 <button class="btn btn-link d-block d-md-none" data-toggle="collapse" data-target="#sidebar-nav" role="button" >
 <span class="oi oi-menu"></span>
 </button>

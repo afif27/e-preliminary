@@ -45,7 +45,7 @@
 <td></td>
     
      <td>
-         <a class="btn btn-info text-white btn-sm" href="{{route('prelims.edit',[$a->id])}}">Edit</a>
+        
         <form onsubmit="return confirm('Delete this user permanently?')" class="d-inline" action="{{route('prelims.destroy', [$a->id])}}" method="POST">
             @csrf
         <input type="hidden" name="_method"  value="DELETE">
