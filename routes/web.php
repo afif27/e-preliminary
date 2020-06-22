@@ -22,7 +22,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users', 'UserController');
 Route::resource('aircrafts', 'AircraftsController');
-Route::resource('prelims','PrelimController');
-Route::post('prelims/create/ajax','PrelimController@store');
 Route::get('prelims/create','AircraftsController@combo')->name('prelims.create');
-
+Route::resource('prelims','PrelimController');
+Route::get('excel/{id}', 'PrelimController@laporanExcel')->name('prelims.excel');

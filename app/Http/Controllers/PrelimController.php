@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Prelim;
 use DB;
+use App\Exports\PrelimExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PrelimController extends Controller
 {
@@ -63,7 +65,7 @@ class PrelimController extends Controller
      */
     public function show($id)
     {
-        $aircraft = \App\Aircraft::findOrFail($id);;
+        $aircraft = \App\Aircraft::findOrFail($id);
         $prelim = Prelim::where('aircraft_id',$id)->get(); 
        // $prelims = DB::table('prelims')->where('aircraft_id',$aircraft_id);
         return view('prelims.show', ['prelims' => $prelim,
@@ -78,7 +80,8 @@ class PrelimController extends Controller
      */
     public function edit($id)
     {
-        //
+        $prelim = \App\Prelim::findOrFail($id);
+        return view('prelims.edit', ['prelim' => $prelim,]);
     }
 
     /**
@@ -90,7 +93,15 @@ class PrelimController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $new_prelim = \App\Prelim::findOrFail($id);
+        $new_prelim->description=$request->get('description');
+        $new_prelim->finding=$request->get('finding');
+        $new_prelim->seat_position=$request->get('seat_position');
+        $new_prelim->action=$request->get('action');
+   
+        $new_prelim->save();
+        return redirect()->route('prelims.index')->with('status', 'Aircraft
+        successfully Edited');
     }
 
     /**
@@ -103,6 +114,18 @@ class PrelimController extends Controller
     {
         //
     }
+    public function laporanExcel($id)
     
+{
+    $id_pesawat =  \App\Aircraft::findOrFail($id);
+    
+    return Excel::download(new PrelimExport($id_pesawat), 'prelim.xlsx');
+}
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
         
 }
