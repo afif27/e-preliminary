@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Prelim;
 use DB;
 use App\Exports\PrelimExport;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PrelimController extends Controller
@@ -112,15 +113,23 @@ class PrelimController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = \App\Prelim::findOrFail($id);
+        $user->delete();
+        return redirect()->route('prelims.index')->with('status', 'successfully delete');
     }
-    public function laporanExcel($id)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function laporanExcel(Request $request)
+    {
+        $id = $request->route('id');
+        
     
-{
-    $id_pesawat =  \App\Aircraft::findOrFail($id);
-    
-    return Excel::download(new PrelimExport($id_pesawat), 'prelim.xlsx');
-}
+    return Excel::download(new PrelimExport($id), 'prelim.xlsx');
+    }
     /**
      * Show the form for editing the specified resource.
      *

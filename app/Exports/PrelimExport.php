@@ -8,22 +8,26 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class PrelimExport implements FromView
+class PrelimExport implements FromView, ShouldAutoSize
 {
-    public $id_pesawat;
 
-    function __construct($id)
+
+
+    public function __construct(int $id)
     {
         $this->id_pesawat = $id;
     }
     
-    public function view(): view
+    public function View(): View
     {
     
-        $prelim = Prelim::where('aircraft_id',$this->id_pesawat)->get(); 
+        $prelim = Prelim::where('aircraft_id',$this->id_pesawat)->get();
+        $aircraft = \App\Aircraft::findOrFail($this->id_pesawat);
+        return view('prelims.excel',['prelim'=>$prelim, 'aircrafts'=>$aircraft]);
 
-        return view('prelims.excel',['prelim'=>$prelim]);
-
+        
     }
 }

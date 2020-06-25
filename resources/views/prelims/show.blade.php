@@ -17,7 +17,7 @@
 <th><b>Finding</b></th>
 <th><b>seat Position</b></th>
 <th><b>Action</b></th>
-<th><b>Edit</b></th>
+<th><b>Menu</b></th>
 </tr>
 </thead>
 <tbody>
@@ -28,7 +28,12 @@
 <td>{{$p->finding}}</td>
 <td>{{$p->seat_position}}</td>
 <td>{{$p->action}}</td>
-<td> <a class="btn btn-info text-white btn-sm" href="{{route('prelims.edit',[$p->id])}}">Edit</a></td>
+<td> <a class="btn btn-info text-white btn-sm" href="{{route('prelims.edit',[$p->id])}}">Edit</a>
+<form onsubmit="return confirm('Delete this user permanently?')" class="d-inline" action="{{route('prelims.destroy', [$p->id])}}" method="post">
+    @csrf
+<input type="hidden" name="_method"  value="DELETE">
+<input type="submit" value="Delete" class="btn btn-danger btn-sm">
+</form></td>
     </tr>
     @endforeach
     </tbody>

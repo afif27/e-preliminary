@@ -1,3 +1,7 @@
+<h3>Preliminary : {{$aircrafts->registrasi}} </h3>
+<h3>Date :  ({{$aircrafts->created_at}}) </h3>
+
+<br>
 <table class="table table-bordered">
     <thead>
     <tr>
