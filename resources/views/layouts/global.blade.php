@@ -61,7 +61,11 @@ margin-bottom: 2rem;
 <div class="polished-sidebar bg-light col-12 col-md-3 col-lg-2p-0 collapse d-md-inline" id="sidebar-nav">
 <ul class="polished-sidebar-menu ml-0 pt-4 p-0 d-md-block">
 <input class="border-dark form-control d-block d-md-none mb-4" type="text" placeholder="Search" aria-label="Search" />
-<li><a href="/home"><span class="oi oi-home"></span>Home</a></li>
+<li>
+<a href="/home">
+<span class="oi oi-home"></span>Home
+</a>
+</li>
 <li>
 <a href="{{route('users.index')}}">
 <span class="oi oi-people"></span> Manage Users
@@ -69,12 +73,12 @@ margin-bottom: 2rem;
 </li>
 <li>
 <a href="{{route('aircrafts.index')}}">
-<span class="oi oi-people"></span> Manage Aircraft
+<span class="oi oi-wrench"></span>Manage Aircraft
 </a>
 </li>
 <li>
     <a href="{{route('prelims.index')}}">
-    <span class="oi oi-people"></span> Manage Prelims
+    <span class="oi oi-book"></span> Manage Prelims
     </a>
     </li>
 <div class="d-block d-md-none">
@@ -111,6 +115,7 @@ margin-bottom: 2rem;
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script src="{{asset('datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{asset('datepicker/dist/js/bootstrap-datepicker.js')}}"></script>
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 <script type="text/javascript">
     $(function(){
      $(".datepicker").datepicker({
