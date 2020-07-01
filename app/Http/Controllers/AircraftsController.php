@@ -69,7 +69,8 @@ class AircraftsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $aircraft = \App\Aircraft::findOrFail($id);
+        return view('aircrafts.edit', ['aircraft'=>$aircraft]);
     }
 
     /**
@@ -81,7 +82,12 @@ class AircraftsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $new_aircraft = \App\Aircraft::findOrFail($id);
+        $new_aircraft->registrasi = $request->get('registrasi');
+        $new_aircraft->airlines = $request->get('airlines');
+        $new_aircraft->save();
+        return redirect()->route('prelims.index')->with('status', 'Aircraft
+        successfully Edited');
     }
 
     /**
@@ -101,5 +107,13 @@ class AircraftsController extends Controller
         
         
        return view('prelims.create', compact('aircraft'));
+    }
+    public function updateStatus(Request $request, $id)
+    {
+        $new_aircraft = \App\Aircraft::findOrFail($id);
+        $new_aircraft->status = $request-> get('status');
+        $new_aircraft->save();
+        return redirect()->route('prelims.index')->with('status', 'Aircraft
+        successfully Edited');
     }
 }

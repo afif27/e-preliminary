@@ -42,7 +42,43 @@
 <td>{{$a->registrasi}}</td>
 <td>{{$a->airlines}}</td>
 <td>{{$a->rts_plan}}</td>
-<td></td>
+<td>@if($a->status == "OPEN")
+    <button type="button" class="badge bg-danger text-light" data-toggle="modal" data-target="#modal-status">{{$a->status}}</button>
+    @elseif($a->status == "PROGRESS")
+    <button type="button" class="badge bg-warning text-light" data-toggle="modal" data-target="#modal-status">{{$a->status}}</button>
+    @elseif($a->status == "FINISH")
+    <button type="button"class="badge bg-success text-light" data-toggle="modal" data-target="#modal-status">{{$a->status}}</button>
+    @endif
+    <div class="modal fade" id="modal-status" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Change Status</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form enctype="multipart/form-data" action="{{route('aircrafts.updateStatus', [$a->id])}} "method="POST">
+                @csrf
+                <input type="hidden"  value="PUT"  name="_method">
+              <input type="radio" name="status" id="OPEN" value="OPEN">
+              <label for="OPEN">OPEN</label>
+              <input type="radio" name="status" id="PROGRESS"value="PROGRESS">
+              <label for="PROGRESS">PROGRESS</label> 
+              <input type="radio" name="status" id="FINISH" value="FINISH">
+              <label for="FINISH">FINISH</label>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input type="submit" id="submit" class="btn btn-primary" value="Save"/>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </td>
     
      <td>
         
