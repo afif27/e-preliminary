@@ -12,7 +12,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                   Selamat datang <b>{{Auth::user()->name}}</b> , Selamat Bekerja !
                 </div>
             </div>
         </div>

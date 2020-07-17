@@ -7,9 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use App\Aircraft;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 
 class AircraftsController extends Controller
 {
+    public function __construct(){
+        $this->middleware(function($request, $next){
+            if(Gate::allows('manage-aircrafts')) return $next($request);
+            abort(403, 'Anda tidak memiliki cukup hak akses, Silahkah Hubungi Admin/PPC');
+            });
+        }
     /**
      * Display a listing of the resource.
      *

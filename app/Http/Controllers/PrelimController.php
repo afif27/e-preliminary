@@ -8,9 +8,17 @@ use DB;
 use App\Exports\PrelimExport;
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Gate;
 
 class PrelimController extends Controller
 {
+    public function __construct(){
+        $this->middleware(function($request, $next){
+            if(Gate::allows('manage-prelims','prelim/create')) return $next($request);
+            abort(403, 'Anda tidak memiliki cukup hak akses, Silahkah Hubungi Admin/PPC');
+            });
+            
+        }
     /**
      * Display a listing of the resource.
      *
